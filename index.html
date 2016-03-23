@@ -23,7 +23,23 @@
         <span><img src="assets/mozilla-logo.png"/><img src="assets/rustacean-logo.png"/></span>
         <p>Разработка ведётся на <a href="https://github.com/rust-lang/rust">GitHub</a></p>
       </div>
-      <div id="view-all" class="step" data-x="0" data-y="0" data-scale="5"></div>
+      <div id="about" class="step slide" data-x="1500" data-y="1700" data-rotate="90" data-scale="3">
+        <q>Что же такое <b>Rust</b>?</q>
+        <p>Это системный язык программирования, который предотвращает утечки памяти, обращение к освобождённым данным, ситуации гонок в многопоточных приложениях без накладных расходов во время выполнения.</p>
+        <p>Кроме того стоит заметить, что абстракции в <b>Rust</b> также имеют нулевую стоимость засчёт статической диспетчеризации во время компиляции.</p>
+      </div>
+      <div id="compare-gc" class="step slide" data-x="-1000" data-y="1700", data-rotate="180" data-scale="3">
+        <q>Работа с памятью</q>
+        <p>Безопасные языки вроде <b>Java</b>, <b>C#</b>, <b>Python</b>, <b>JavaScript</b> используют сборщики мусора. Для сборщиков мусора требуется некая среда исполнения, с наличием в ней сборщика мусора, кроме того сборщик отнимает процессорное время у программы.
+        <p>Небезопасные языки вроде <b>C</b>/<b>C++</b> не создают дополнительных накладных расходов, однако весь менеджмент памятью остаётся полностью на разработчике, что зачастую выливается в увлекательные поиски трудноповторимого редкого бага.</p>
+      </div>
+      <div id="mutability" class="step slide" data-x="-3500" data-y="1700", data-rotate="270" data-scale="3">
+        <q>Изменяемость в <b>Rust</b></q>
+      </div>
+      <div id="mutability-2" class="step slide" data-x="-3500" data-y="-1100", data-rotate="270" data-scale="3">
+        
+      </div>
+      <div id="view-all" class="step" data-x="0" data-y="0" data-scale="7"></div>
     </div>    
     <script src="js/impress.js"></script>
     <script>impress().init();</script>

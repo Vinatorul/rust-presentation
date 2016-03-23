@@ -28,6 +28,30 @@ body {
     background: rgb(215, 215, 215);
 }
 
+pre {
+    font-size: 30px;
+}
+
+pre .error {
+    color: rgb(170, 0, 0);
+}
+
+pre .number {
+    color: rgb(0, 0, 170);
+}
+
+pre .string {
+    color: rgb(170, 170, 0);
+}
+
+pre .keyword {
+    font-weight: bold;
+}
+
+pre .note {
+    color: rgb(0, 170, 0);
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -160,6 +184,13 @@ a:focus {
 #view-all { display: none }
 
 .impress-on-view-all .step {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#view-mutability { display: none }
+
+.impress-on-view-mutability .step {
     opacity: 1;
     cursor: pointer;
 }

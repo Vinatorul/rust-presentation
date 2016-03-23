@@ -25,6 +25,7 @@ table {
 body {
     font-family: 'PT Sans', sans-serif;
     min-height: 740px;
+    background: rgb(215, 215, 215);
 }
 
 .fallback-message {
@@ -111,9 +112,21 @@ body {
     white-space: nowrap;
 }
 
-#overview { display: none }
+#rust-pl {
+    text-align: center;
+    font-size: 60px;
+    line-height: 1;
+}
 
-.impress-on-overview .step {
+#rust-pl b {
+    display: block;
+    font-size: 250px;
+    line-height: 250px;
+}
+
+#view-all { display: none }
+
+.impress-on-view-all .step {
     opacity: 1;
     cursor: pointer;
 }

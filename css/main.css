@@ -8,14 +8,6 @@ body {
 ol, ul {
     list-style: none;
 }
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
 
 table {
     border-collapse: collapse;
@@ -146,7 +138,7 @@ a:focus {
     letter-spacing: -1px;
 }
 
-.slide q {
+.slide h3 {
     display: block;
     font-size: 50px;
     line-height: 72px;
@@ -154,7 +146,7 @@ a:focus {
     margin-top: 100px;
 }
 
-.slide q strong {
+.slide h3 strong {
     white-space: nowrap;
 }
 

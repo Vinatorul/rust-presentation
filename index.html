@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Язык программирования Rust</title>
-    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet"/>
   </head>
   <body class="impress-not-supported">
     <div class="fallback-message">
@@ -11,10 +11,10 @@
     </div>
     <div id="impress">
       <div id="intro-gc" class="step slide" data-x="-1000" data-y="-1500">
-        <q>Жалко ресурсов на сборку мусора, но и не хочется заниматься ручным управлением памятью?</q>        
+        <h3>Жалко ресурсов на сборку мусора, но и не хочется заниматься ручным управлением памятью?</h3>        
       </div>
       <div id="intro-tr" class="step slide" data-x="0" data-y="-1500">
-        <q>Хочется потокобезопасности без накладных расходов во время выполнения?</q>
+        <h3>Хочется потокобезопасности без накладных расходов во время выполнения?</h3>
       </div>
       <div id="rust-pl" class="step" data-x="-500" data-y="-500" data-scale="2">
         <p>Тогда вам будет интересно узнать про язык программирования <b>Rust</b></p>     
@@ -25,17 +25,17 @@
         <p>Разработка ведётся на <a href="https://github.com/rust-lang/rust">GitHub</a></p>
       </div>
       <div id="about" class="step slide" data-x="3500" data-y="-500" data-rotate="90" data-scale="3">
-        <q>Что же такое <b>Rust</b>?</q>
+        <h3>Что же такое <b>Rust</b>?</h3>
         <p>Это системный язык программирования, который предотвращает утечки памяти, обращение к освобождённым данным, ситуации гонок в многопоточных приложениях без накладных расходов во время выполнения.</p>
         <p>Кроме того стоит заметить, что абстракции в <b>Rust</b> также имеют нулевую стоимость за счёт статической диспетчеризации во время компиляции.</p>
       </div>
       <div id="compare-gc" class="step slide" data-x="3500" data-y="2000", data-rotate="180" data-scale="3">
-        <q>Работа с памятью</q>
+        <h3>Работа с памятью</h3>
         <p>Безопасные языки вроде <b>Java</b>, <b>C#</b>, <b>Python</b>, <b>JavaScript</b> используют сборщики мусора. Для сборщиков мусора требуется некая среда исполнения с наличием в ней сборщика мусора, кроме того сборщик отнимает процессорное время у приложения.
         <p>Небезопасные языки вроде <b>C</b>/<b>C++</b> не создают дополнительных накладных расходов, однако весь менеджмент памятью остаётся полностью на разработчике, что зачастую выливается в увлекательные поиски трудноповторимого редкого бага.</p>
       </div>
       <div id="mutability-1" class="step slide" data-x="1750" data-y="1525", data-rotate="90" data-scale="1">
-        <q>Владение и заимствование в <b>Rust</b></q>
+        <h3>Владение и заимствование</h3>
         <p>Любая программа на <b>Rust</b> использует связывание имён. Они связывают значение с именем, для того чтобы воспользоваться им позже. Для связывания используется ключевое слово <b>let</b></p>
         <p>По умолчанию связывание неизменяемое, чтобы связывание было изменяемым, нужно использовать модификатор <b>mut</b>.</p>
       </div>
@@ -50,7 +50,7 @@
         <p>В <b>Rust</b> также различают копируемые и некопируемые типы. Принципиальное их отличие в том, что первые не имеют внутри себя изменяемую ссылку, а вторые имеют. При передаче владения копируемого типа создаётся копия данных и передаётся владение именно копией, но если тип некопируемый, то передаётся владение исходными данными, а старое связывание теряется.</p>
       </div>    
       <div id="mutability-4" class="step slide" data-x="1000" data-y="2475", data-rotate="90" data-scale="1">
-        <q>Что выведет следующий код?</q>
+        <h3>Что выведет следующий код?</h3>
         <pre> 
 <span class="keyword">fn</span> take(<span class="keyword">mut</span> v: Vec&lt;i32&gt;) {
     v.pop();
@@ -67,7 +67,7 @@
       </div>
       <div id="view-mutability" class="step" data-x="1375" data-y="2000", data-rotate="90" data-scale="1.5"></div>
       <div id="mutability-5" class="step" data-x="50" data-y="1525" data-z="500" data-rotate-y="90" data-rotate="90" data-scale="1">
-        <q>Он не скомпилируется</q>
+        <h3>Он не скомпилируется</h3>
         <pre>
 <span class="error">error</span>: <b>use of moved value: `vec`</b> [E0382]
        println!("{}", vec[0]);
@@ -81,7 +81,7 @@
         </pre>
       </div>
       <div id="mutability-6" class="step" data-x="50" data-y="3475" data-z="500" data-rotate="90" data-rotate-y="90" data-scale="1">
-        <q>Исправляем</q>
+        <h3>Исправляем</h3>
         <pre> 
 <span class="keyword">fn</span> take(v: <span class="keyword">&amp;mut</span> Vec&lt;i32&gt;) {
     v.pop();
@@ -97,10 +97,10 @@
         </pre>
       </div>
       <div class="step slide" scale="2" data-x="-2000" data-y="2000">
-        <q>Источники</q>
+        <h3>Источники</h3>
         <p>Официальный сайт <a href="https://www.rust-lang.org/">www.rust-lang.org</a><p>
         <p>Книга <a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Language</a> и её перевод <a href="https://gitter.im/ruRust/general">RuRust</a> сообществом <a href="http://rurust.github.io/rust_book_ru/">Язык Программирования Rust</a></p>
-        <q>Code Rust - Be Awesome ;)</q>
+        <h3>Code Rust - Be Awesome ;)</h3>
         <p>Powered by <a href="https://github.com/impress/impress.js">ImpressJS </a></p>    
       <div>
       <div id="view-all" class="step" data-x="0" data-y="0" data-scale="7"></div>

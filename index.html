@@ -33,22 +33,57 @@
         <p>Безопасные языки вроде <b>Java</b>, <b>C#</b>, <b>Python</b>, <b>JavaScript</b> используют сборщики мусора. Для сборщиков мусора требуется некая среда исполнения с наличием в ней сборщика мусора, кроме того сборщик отнимает процессорное время у приложения.
         <p>Небезопасные языки вроде <b>C</b>/<b>C++</b> не создают дополнительных накладных расходов, однако весь менеджмент памятью остаётся полностью на разработчике, что зачастую выливается в увлекательные поиски трудноповторимого редкого бага.</p>
       </div>
-      <div id="mutability-1" class="step slide" data-x="1750" data-y="1525", data-rotate="90" data-scale="1">
-        <q>Владение и заимствование в <b>Rust</b></q>
-        <p>Любая программа на <b>Rust</b> использует связывание имён. Они связывают значение с именем, для того чтобы воспользоваться им позже. Для связывания используется ключевое слово <b>let</b></p>
-        <p>По умолчанию связывание неизменяемое, чтобы связывание было изменяемым, нужно использовать модификатор <b>mut</b>.</p>
+      <div id="binging-1" class="step slide" data-x="1750" data-y="1525", data-rotate="90" data-scale="1">
+        <q>Связывание имён</q>
+        <p>Любая программа на <b>Rust</b> использует связывание имён. Они связывают значение с именем, для того чтобы воспользоваться им позже. Для связывания используется ключевое слово <b>let</b>:</p>
+        <pre>
+<span class="keyword">fn</span> main() {
+    <span class="keyword">let</span> x = <span class="number">5</span>;
+}</pre>
+        <p>Далее будем считать, что все действия происходят внутри функции <b>main</b></p> 
       </div>
-      <div id="mutability-2" class="step slide" data-x="1750" data-y="2475", data-rotate="90" data-scale="1">
+      <div id="binging-2" class="step slide" data-x="1750" data-y="2475", data-rotate="90" data-scale="1">
+        <q>Шаблоны связывания</q>
+        <p>В левой части выражения <b>let</b> располагается не просто имя переменной, а "шаблон". Связываение происходит попарно имя-значение:</p>
+        <pre>
+<span class="keyword">let</span> (x, y) = (<span class="number">5</span>, <span class="number">6</span>);
+
+println!(<span class="string">"x = {}"</span>, x); <span class="comment">// x = 5</span>
+println!(<span class="string">"y = {}"</span>, y); <span class="comment">// y = 6</span>
+        </pre>   
+      </div>
+      <div id="binging-3" class="step slide" data-x="1750" data-y="3425", data-rotate="90" data-scale="1">
+        <q>Изменяемость</q>
+        <p>По умолчанию связывание неизменяемое:</p>
+        <pre>
+<span class="keyword">let</span> x = <span class="number">7</span>;
+x = <span class="number">5</span>; <span class="comment">// Ошибка компиляции</span></pre>
+        <p>Чтобы связывание было изменяемым, нужно использовать модификатор <b>mut</b> при связывании:</p>
+        <pre>
+<span class="keyword">let mut</span> x = <span class="number">7</span>;
+x = <span class="number">5</span>;
+println!(<span class="string">"x = {}"</span>, x); <span class="comment">// x = 5</span></pre>
+      </div>
+      <div id="binging-4" class="step slide" data-x="1750" data-y="4375", data-rotate="90" data-scale="1">
+        <q>Строгая типизация</q>
+        <p><b>Rust</b> является статически типизированным языком программирования, однако чаще всего указывать тип вручную не требуется, поскольку в <b>Rust</b> имеется вывод типов из контекста.</p>
+        <p>Если всё же понадобилось указать тип вручную, то это можно сделать следующим образом:</p>
+        <pre>
+<span class="keyword">let</span> x: <span class="keyword">i32</span> = <span class="number">10</span>;
+<span class="keyword">let</span> x = <span class="number">10i32</span>;</pre>
+        <p>Второй способ применим только для литералов</p>
+      </div>
+        <div id="mutability-2" class="step slide" data-x="1000" data-y="1525", data-rotate="90" data-scale="1">
         <p>Связанные имена имеют область видимости — они ограничены блоком, в котором они были объявлены.</p>
         <p>Помимо прочего, связанные имена могут быть затенены. Это значит, что, если объявить связывание с именем, которое уже существует, то оно переопределит предыдущее.</p>
         <p>Затенение и изменяемое связывание могут казаться двумя сторонами одной монеты, но они являются двумя отдельными концепциями, которые не всегда взаимозаменяемы. Например, затенение позволяет связать имя с другим типом или изменить связь с изменяемой на неизменяемую.</p>
       </div>
-      <div id="mutability-3" class="step slide" data-x="1000" data-y="1525", data-rotate="90" data-scale="1">  
+      <div id="mutability-3" class="step slide" data-x="1000" data-y="2475", data-rotate="90" data-scale="1">  
         <p>У каждого связывания в <b>Rust</b> одновременно может быть лишь один владелец. Владелец может либо передать владение, либо одолжить изменяемо или константно другому объекту.</p>
         <p>Заимствование по своей сути является передачей ссылки. Важно, что в <b>Rust</b> одновременно может существовать либо одна мутабельная ссылка, либо сколько угодно константных.</p>
         <p>В <b>Rust</b> также различают копируемые и некопируемые типы. Принципиальное их отличие в том, что первые не имеют внутри себя изменяемую ссылку, а вторые имеют. При передаче владения копируемого типа создаётся копия данных и передаётся владение именно копией, но если тип некопируемый, то передаётся владение исходными данными, а старое связывание теряется.</p>
       </div>    
-      <div id="mutability-4" class="step slide" data-x="1000" data-y="2475", data-rotate="90" data-scale="1">
+      <div id="mutability-4" class="step slide" data-x="1000" data-y="3425", data-rotate="90" data-scale="1">
         <q>Что выведет следующий код?</q>
         <pre> 
 <span class="keyword">fn</span> take(<span class="keyword">mut</span> v: Vec&lt;i32&gt;) {
@@ -64,7 +99,6 @@
 }
         </pre>
       </div>
-      <div id="view-mutability" class="step" data-x="1375" data-y="2000", data-rotate="90" data-scale="1.5"></div>
       <div id="mutability-5" class="step" data-x="50" data-y="1525" data-z="500" data-rotate-y="90" data-rotate="90" data-scale="1">
         <q>Он не скомпилируется</q>
         <pre>

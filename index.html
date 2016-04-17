@@ -32,9 +32,9 @@
       <div id="compare-gc" class="step slide" data-x="3500" data-y="2000", data-rotate="180" data-scale="3">
         <h3>Работа с памятью</h3>
         <p>Безопасные языки вроде <b>Java</b>, <b>C#</b>, <b>Python</b>, <b>JavaScript</b> используют сборщики мусора. Для сборщиков мусора требуется некая среда исполнения с наличием в ней сборщика мусора, кроме того сборщик отнимает процессорное время у приложения.
-        <p>Небезопасные языки вроде <b>C</b>/<b>C++</b> не создают дополнительных накладных расходов, однако весь менеджмент памятью остаётся полностью на разработчике, что зачастую выливается в увлекательные поиски трудноповторимого редкого бага.</p>
+        <p>Небезопасные языки вроде <b>C</b>, <b>C++</b>, <b>Delphi</b> не создают дополнительных накладных расходов, однако весь менеджмент памятью остаётся полностью на разработчике, что зачастую выливается в увлекательные поиски трудноповторимого редкого бага.</p>
       </div>
-      <div id="binging-1" class="step slide" data-x="1750" data-y="1525", data-rotate="90" data-scale="1">
+      <div id="binding-1" class="step slide" data-x="1750" data-y="1525", data-rotate="90" data-scale="1">
         <h3>Связывание имён</h3>
         <p>Любая программа на <b>Rust</b> использует связывание имён. Они связывают значение с именем, для того чтобы воспользоваться им позже. Для связывания используется ключевое слово <b>let</b>:</p>
         <pre>
@@ -43,9 +43,9 @@
 }</pre>
         <p>Далее будем считать, что все действия происходят внутри функции <b>main</b></p> 
       </div>
-      <div id="binging-2" class="step slide" data-x="1750" data-y="2475", data-rotate="90" data-scale="1">
+      <div id="binding-2" class="step slide" data-x="1750" data-y="2475", data-rotate="90" data-scale="1">
         <h3>Шаблоны связывания</h3>
-        <p>В левой части выражения <b>let</b> располагается не просто имя переменной, а "шаблон". Связываение происходит попарно имя-значение:</p>
+        <p>В левой части выражения <b>let</b> располагается не просто имя переменной, а «шаблон». Связываение происходит попарно имя-значение:</p>
         <pre>
 <span class="keyword">let</span> (x, y) = (<span class="number">5</span>, <span class="number">6</span>);
 
@@ -53,19 +53,19 @@ println!(<span class="string">"x = {}"</span>, x); <span class="comment">// x = 
 println!(<span class="string">"y = {}"</span>, y); <span class="comment">// y = 6</span>
         </pre>   
       </div>
-      <div id="binging-3" class="step slide" data-x="1750" data-y="3425", data-rotate="90" data-scale="1">
+      <div id="binding-3" class="step slide" data-x="1750" data-y="3425", data-rotate="90" data-scale="1">
         <h3>Изменяемость</h3>
         <p>По умолчанию связывание неизменяемое:</p>
         <pre>
 <span class="keyword">let</span> x = <span class="number">7</span>;
 x = <span class="number">5</span>; <span class="comment">// Ошибка компиляции</span></pre>
-        <p>Чтобы связывание было изменяемым, нужно использовать модификатор <b>mut</b> при связывании:</p>
+        <p>Чтобы оно стало изменяемым - нужно использовать модификатор <b>mut</b> при связывании:</p>
         <pre>
 <span class="keyword">let mut</span> x = <span class="number">7</span>;
 x = <span class="number">5</span>;
 println!(<span class="string">"x = {}"</span>, x); <span class="comment">// x = 5</span></pre>
       </div>
-      <div id="binging-4" class="step slide" data-x="1750" data-y="4375", data-rotate="90" data-scale="1">
+      <div id="binding-4" class="step slide" data-x="1750" data-y="4375", data-rotate="90" data-scale="1">
         <h3>Строгая типизация</h3>
         <p><b>Rust</b> является статически типизированным языком программирования, однако чаще всего указывать тип вручную не требуется, поскольку в <b>Rust</b> имеется вывод типов из контекста.</p>
         <p>Если всё же понадобилось указать тип вручную, то это можно сделать следующим образом:</p>
@@ -74,17 +74,37 @@ println!(<span class="string">"x = {}"</span>, x); <span class="comment">// x = 
 <span class="keyword">let</span> x = <span class="number">10i32</span>;</pre>
         <p>Второй способ применим только для литералов</p>
       </div>
-        <div id="mutability-2" class="step slide" data-x="1000" data-y="1525", data-rotate="90" data-scale="1">
-        <p>Связанные имена имеют область видимости — они ограничены блоком, в котором они были объявлены.</p>
-        <p>Помимо прочего, связанные имена могут быть затенены. Это значит, что, если объявить связывание с именем, которое уже существует, то оно переопределит предыдущее.</p>
-        <p>Затенение и изменяемое связывание могут казаться двумя сторонами одной монеты, но они являются двумя отдельными концепциями, которые не всегда взаимозаменяемы. Например, затенение позволяет связать имя с другим типом или изменить связь с изменяемой на неизменяемую.</p>
+      <div id="owning-1" class="step slide" data-x="1000" data-y="1525", data-rotate="90" data-scale="1">
+        <h3>Владение</h3>
+        <p>Связаные имена в <b>Rust</b> «владеют» тем, с чем они связаны. Когда имя выходит за область видимости, ресурс, с которым оно было связано, освобождается:</p>
+        <pre>
+<span class="comment">// Некоторый код до блока</span>
+{
+  <span class="keyword">let</span> v = Vec::&lt;i32&gt;::new();
+}
+<span class="comment">// Ресурсы, выделенные для вектора v как  
+// на стеке, так и в куче здесь уже освобождены</span></pre>
       </div>
-      <div id="mutability-3" class="step slide" data-x="1000" data-y="2475", data-rotate="90" data-scale="1">  
-        <p>У каждого связывания в <b>Rust</b> одновременно может быть лишь один владелец. Владелец может либо передать владение, либо одолжить изменяемо или константно другому объекту.</p>
-        <p>Заимствование по своей сути является передачей ссылки. Важно, что в <b>Rust</b> одновременно может существовать либо одна мутабельная ссылка, либо сколько угодно константных.</p>
-        <p>В <b>Rust</b> также различают копируемые и некопируемые типы. Принципиальное их отличие в том, что первые не имеют внутри себя изменяемую ссылку, а вторые имеют. При передаче владения копируемого типа создаётся копия данных и передаётся владение именно копией, но если тип некопируемый, то передаётся владение исходными данными, а старое связывание теряется.</p>
+      <div id="owning-2" class="step slide" data-x="1000" data-y="2475", data-rotate="90" data-scale="1">
+        <h3>Семантика перемещения</h3>
+        <p><b>Rust</b> гарантирует, что у ресурса всегда существует ровно одно связывание. Если мы попробуем связать один ресурс с другим именем, то владение ресурсом будет передано новому связыванию, а старое перестанет быть актуальным:</p>
+        <pre>
+<span class="keyword">let</span> v = Vec::&lt;i32&gt;::new();
+<span class="keyword">let</span> v2 = v;
+println!(<span class="string">"{:?}"</span>, v); <span class="comment">// Ошибка компиляции</span>
+<span class="comment">// Использование перемещённого значения</span></pre>
+      </div>
+      <div id="owning-3" class="step slide" data-x="1000" data-y="3425", data-rotate="90" data-scale="1">  
+        <p>Причина по которой нельзя использовать значения после перемещения является основопологающей. В строке</p>
+        <pre><span class="keyword">let</span> v = Vec::&lt;i32&gt;::new();</pre> 
+        <p>создаются некоторые данные для вектора на стеке, однако сам буфер выделяется в куче, т.е. стековые данные содержат указатель на буфер в куче. При перемещении</p>
+        <pre><span class="keyword">let</span> v2 = v;</pre>
+        <p>создаётся копия стековых данных, в том числе и копия указателя на буфер в куче, что недопустимо.</p>
+        <p>Также стоит заметить, что компилятор оптимизирует подобные ситуации, так что реального копирования данных чаще всего не проиходит.</p> 
       </div>    
-      <div id="mutability-4" class="step slide" data-x="1000" data-y="3425", data-rotate="90" data-scale="1">
+      <div id="borrowing-1" class="step slide" data-x="250" data-y="1525", data-rotate="90" data-scale="1">
+      </div>
+      <div id="mutability-4" class="step slide" data-x="-5000" data-y="4375", data-rotate="90" data-scale="1">
         <h3>Что выведет следующий код?</h3>
         <pre> 
 <span class="keyword">fn</span> take(<span class="keyword">mut</span> v: Vec&lt;i32&gt;) {
@@ -100,7 +120,7 @@ println!(<span class="string">"x = {}"</span>, x); <span class="comment">// x = 
 }
         </pre>
       </div>
-      <div id="mutability-5" class="step" data-x="50" data-y="1525" data-z="500" data-rotate-y="90" data-rotate="90" data-scale="1">
+      <div id="mutability-5" class="step" data-x="-1050" data-y="1525" data-z="500" data-rotate-y="90" data-rotate="90" data-scale="1">
         <h3>Он не скомпилируется</h3>
         <pre>
 <span class="error">error</span>: <b>use of moved value: `vec`</b> [E0382]

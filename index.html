@@ -104,51 +104,7 @@ println!(<span class="string">"{:?}"</span>, v); <span class="comment">// Оши
       </div>    
       <div id="borrowing-1" class="step slide" data-x="250" data-y="1525", data-rotate="90" data-scale="1">
       </div>
-      <div id="mutability-4" class="step slide" data-x="-5000" data-y="4375", data-rotate="90" data-scale="1">
-        <h3>Что выведет следующий код?</h3>
-        <pre> 
-<span class="keyword">fn</span> take(<span class="keyword">mut</span> v: Vec&lt;i32&gt;) {
-    v.pop();
-    v.push(<span class="number">2</span>);
-}
-
-<span class="keyword">fn</span> main() {
-    <span class="keyword">let mut</span> vec = Vec::&lt;i32&gt;::new();
-    vec.push(<span class="number">1</span>);
-    take(vec);
-    println!(<span class="string">"{}"</span>, vec[<span class="number">0</span>]);
-}
-        </pre>
-      </div>
-      <div id="mutability-5" class="step" data-x="-1050" data-y="1525" data-z="500" data-rotate-y="90" data-rotate="90" data-scale="1">
-        <h3>Он не скомпилируется</h3>
-        <pre>
-<span class="error">error</span>: <b>use of moved value: `vec`</b> [E0382]
-       println!("{}", vec[0]);
-                      <span class="error">^~~</span>
-<span class="note">note</span>: <b>vec moved here because 
-      it has type collections::vec::Vec&lt;i32&gt;, 
-      which is non-copyable</b>
-      take(vec);
-           <span class="error">^~~</span>
-<span class="error">error</span>: <b>aborting due to previous error</b>
-        </pre>
-      </div>
-      <div id="mutability-6" class="step" data-x="50" data-y="3475" data-z="500" data-rotate="90" data-rotate-y="90" data-scale="1">
-        <h3>Исправляем</h3>
-        <pre> 
-<span class="keyword">fn</span> take(v: <span class="keyword">&amp;mut</span> Vec&lt;i32&gt;) {
-    v.pop();
-    v.push(<span class="number">2</span>);
-}
-
-<span class="keyword">fn</span> main() {
-    <span class="keyword">let mut</span> vec = Vec::&lt;i32&gt;::new();
-    vec.push(<span class="number">1</span>);
-    take(<span class="keyword">&amp;mut</span> vec);
-    println!(<span class="string">"{}"</span>, vec[<span class="number">0</span>]);
-}
-        </pre>
+      <div id="lifetime-1" class="step slide" data-x="-500" data-y="1525", data-rotate="90" data-scale="1">
       </div>
       <div class="step slide" scale="2" data-x="-2000" data-y="2000">
         <h3>Источники</h3>

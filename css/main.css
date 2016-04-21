@@ -193,3 +193,11 @@ a:focus {
 
 .impress-enabled          { pointer-events: none }
 .impress-enabled #impress { pointer-events: auto }
+
+#impress-js-info {
+    float: left;
+}
+
+#github-info {
+    float: right;
+}

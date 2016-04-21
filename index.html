@@ -20,7 +20,7 @@
         <p>Тогда вам будет интересно узнать про язык программирования <b>Rust</b></p>     
       </div>
       <div id="rust-info" class="step" data-x="1500" data-y="-500" data-scale="2">
-        <p>Разрабатывается <b>Mozilla Foundation</b> при поддержке комьюнити</p>
+        <p>Разрабатывается <b>Mozilla Foundation</b> при поддержке сообщества</p>
         <span><img src="assets/mozilla-logo.png"/><img src="assets/rustacean-logo.png"/></span>
         <p>Разработка ведётся на <a href="https://github.com/rust-lang/rust">GitHub</a></p>
       </div>
@@ -104,7 +104,7 @@ println!(<span class="string">"{:?}"</span>, v); <span class="comment">// Оши
       </div>    
       <div id="borrowing-1" class="step slide" data-x="250" data-y="1525", data-rotate="90" data-scale="1">
         <h3>Заимствование</h3>
-        <p>Механизм заимствования в <b>Rust</b> похожа на механизмы ссылок из других языков программирования, но при ближайшем рассмотрении обнаруживаются существенные отличия. Так, например, следующий код не скомпилируется, просто потому что на данные существует «ссылка»:
+        <p>Механизм заимствования в <b>Rust</b> похож на механизмы ссылок из других языков программирования, но при ближайшем рассмотрении обнаруживаются существенные отличия. Так, например, следующий код не скомпилируется, просто потому что на данные существует «ссылка»:
 <pre><span class="keyword">let mut</span> x = <span class="number">7</span>;
 <span class="keyword">let</span> y = &amp;x;
 x = <span class="number">5</span>; <span class="comment">// Невозможно изменить x</span>
@@ -129,7 +129,7 @@ println!(<span class="string">"x = {}"</span>, x); <span class="comment">// Ош
         <span class="comment">// так как x заимствован как изменяемый </span>
 println!(<span class="string">"y = {}"</span>, y); 
 println!(<span class="string">"z = {}"</span>, z); </pre>
-        <p>Интересный момент заключается в том, что <b>z</b> является ссылкой на ссылку, при этом разыменование, происходящее в функции <b>println</b> «раскручивает» последовательность ссылок до данных. Эта особенность языка выходит далеко за рамки данной презентации и заслуживает отдельного внимания</p>
+        <p>Интересный момент заключается в том, что <b>z</b> является ссылкой на ссылку, при этом разыменование, происходящее в вызове <b>println</b> «раскручивает» последовательность ссылок до данных. Эта особенность языка выходит далеко за рамки данной презентации и заслуживает отдельного внимания</p>
       </div>
       <div id="borrowing-4" class="step slide" data-x="250" data-y="4375", data-rotate="90" data-scale="1">
         <h3>Время жизни</h3>
@@ -143,14 +143,29 @@ println!(<span class="string">"z = {}"</span>, z); </pre>
 println!(<span class="string">"{}"</span>, y); <span class="comment">// Ошибка: x живёт </span>
                    <span class="comment">// недостаточно долго</span></pre>
       </div>
-      <div class="step slide" scale="2" data-x="-2000" data-y="2000">
+      <div id="ending-1" class="step slide" data-x="-750" data-y="4375", data-rotate="180" data-scale="1">
+        <h3>Система владения</h3>
+        <p>Обобщая ранее сказанное, система владения в <b>Rust</b> основывается на следующих идеях:</p>
+        <ul>
+          <li>1) Один ресурс имеет ровно одно связывание (одного владельца);</li>
+          <li>2) Когда имя выходит за область видимости, ресурс, с которым оно было связано, освобождается;</li>
+          <li>3) На ресурс может существовать либо сколько угодно неизменямых ссылок, либо только одна изменяемая;</li>
+          <li>4) Ссылка не может пережить ресурс, на который ссылается.</li>
+        </ul>
+      </div>
+      <div id="ending-2" class="step slide" data-x="-1250" data-y="3625", data-rotate="180" data-scale="1">
+        <p>Это позволяет <b>компилятору</b> в каждый момент времени <b>знать</b> кто владеет ресурсом, позаимствовал ли его кто-то, изменяемо или нет, когда ресурс выйдет из области видимости и прочее.</p>
+        <p>А поскольку такая информация доступна во время компиляции для каждого выделенного ресурса в программе, то компилятор может сам подставить вызовы, освобождающие ресурс, в места выхода ресурса из области видимости.</p>
+        <p>Вот такое автоматическое управление памятью без накладных расходов во время выполнения.</p>
+      </div>
+      <div class="step slide" data-scale="3" data-x="-2000" data-y="2000">
         <h3>Источники</h3>
         <p>Официальный сайт <a href="https://www.rust-lang.org/">www.rust-lang.org</a><p>
-        <p>Книга <a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Language</a> и её перевод <a href="https://gitter.im/ruRust/general">RuRust</a> сообществом <a href="http://rurust.github.io/rust_book_ru/">Язык Программирования Rust</a></p>
+        <p>Книга <a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Language</a> и её перевод <a href="http://rurust.github.io/rust_book_ru/">Язык Программирования Rust</a> русскоязычным сообществом <a href="https://gitter.im/ruRust/general">RuRust</a></p>
         <h3>Code Rust - Be Awesome ;)</h3>
-        <p>Powered by <a href="https://github.com/impress/impress.js">ImpressJS </a></p>    
+        <p><span id="impress-js-info">Powered by <a href="https://github.com/impress/impress.js">ImpressJS</a> </span><span id="github-info">Fork me on <a href="https://github.com/Vinatorul/rust-presentation">GitHub</a></span></p>    
       <div>
-      <div id="view-all" class="step" data-x="0" data-y="0" data-scale="7"></div>
+      <div id="view-all" class="step" data-x="1000" data-y="1500" data-scale="7"></div>
     </div>    
     <script src="js/impress.js"></script>
     <script>impress().init();</script>

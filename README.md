@@ -1,6 +1,6 @@
 # rust-presentation
 
-Здесь расположен исходный код презентации [Язык программирования Rust](http://vinatorul.github.io/rust-presentation/)
+Здесь расположен исходный код презентации [Управление памятью в  Rust](http://vinatorul.github.io/rust-presentation/)
 
 ## Лицензия
 
